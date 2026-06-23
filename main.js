@@ -1,4 +1,5 @@
-const API_BASE = window.location.origin;
+const IS_GITHUB_PAGES = location.hostname.endsWith("github.io");
+const API_BASE = (document.querySelector("base")?.href || location.origin + "/").replace(/\/$/, "");
 
 const FALLBACK_GAMES = [
   {
@@ -143,6 +144,11 @@ async function fetchJson(path, fallback) {
 }
 
 async function loadContent() {
+  if (IS_GITHUB_PAGES) {
+    renderGames(FALLBACK_GAMES);
+    renderNews(FALLBACK_NEWS);
+    return;
+  }
   const [games, news] = await Promise.all([
     fetchJson("/api/games", FALLBACK_GAMES),
     fetchJson("/api/news", FALLBACK_NEWS),
@@ -160,6 +166,12 @@ function initContactForm() {
     e.preventDefault();
     status.textContent = "";
     status.className = "form-status";
+
+    if (IS_GITHUB_PAGES) {
+      status.textContent = "Contact form isn't live here — reach us on Discord.";
+      status.classList.add("error");
+      return;
+    }
 
     const data = {
       name: form.name.value.trim(),

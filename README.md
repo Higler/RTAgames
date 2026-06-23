@@ -45,6 +45,8 @@ Then hit http://localhost:5000
 
 Push the repo and turn on GitHub Pages from the root branch. All the frontend files are already at the root — `index.html`, `styles.css`, `main.js`, and the images. GitHub will serve them as-is.
 
+The site auto-detects the GitHub Pages repo path so CSS, JS, and images load correctly on mobile. `404.html` and `.nojekyll` are included for the same reason.
+
 Games and news will use the hardcoded fallbacks in `main.js` since there's no backend on Pages. Contact form won't send anywhere either — Discord link still works.
 
 ## Changing stuff

@@ -47,6 +47,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-h);
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -56,6 +58,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+  min-width: 0;
 }
 
 img, video { display: block; max-width: 100%; height: auto; }
@@ -787,6 +791,13 @@ ul { list-style: none; }
   border-top: 1px solid var(--border);
 }
 
+button,
+a,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .nav-toggle { display: flex; }
@@ -796,11 +807,14 @@ ul { list-style: none; }
     top: var(--header-h);
     left: 0;
     right: 0;
+    z-index: 200;
     flex-direction: column;
     gap: 0;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
     padding: 1rem var(--gutter);
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
     transform: translateY(-120%);
     opacity: 0;
     pointer-events: none;
@@ -826,12 +840,48 @@ ul { list-style: none; }
   }
 
   .featured-content { max-width: 100%; }
+
+  .games-grid,
+  .news-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 11vw, 3.75rem);
+  }
+
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 600px) {
+  .nav-logo span { display: none; }
+
+  .section { padding: 3rem 0; }
+
   .hero-cta,
   .featured-links,
   .community-links { flex-direction: column; }
 
   .community-links .community-card { flex-direction: row; justify-content: center; }
+
+  .hero-cta .btn,
+  .featured-links .btn,
+  .contact-form .btn,
+  .team-join-inner .btn {
+    width: 100%;
+  }
+
+  .contact-social {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 }
