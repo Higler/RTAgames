@@ -14,7 +14,7 @@ round-table-arts/
 ├── logo.svg
 ├── war-hero.png
 ├── jester.jpg
-├── team-placeholder.jpg
+├── mask.jpg
 ├── backend-python/
 ├── backend-java/
 └── start.bat
@@ -41,13 +41,27 @@ python app.py
 
 Then hit http://localhost:5000
 
-## GitHub Pages
+## Live site — rtagames.com
 
-Push the repo and turn on GitHub Pages from the root branch. All the frontend files are already at the root — `index.html`, `styles.css`, `main.js`, and the images. GitHub will serve them as-is.
+The site is hosted on GitHub Pages with a custom domain. The `CNAME` file in the repo root points to `rtagames.com`.
 
-The site auto-detects the GitHub Pages repo path so CSS, JS, and images load correctly on mobile. `404.html` and `.nojekyll` are included for the same reason.
+In your domain registrar's DNS settings, add:
 
-Games and news will use the hardcoded fallbacks in `main.js` since there's no backend on Pages. Contact form won't send anywhere either — Discord link still works.
+| Type | Name | Value |
+|------|------|-------|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `YOUR-USERNAME.github.io` |
+
+(Replace `YOUR-USERNAME` with your actual GitHub username.)
+
+Then in the repo on GitHub: **Settings → Pages → Custom domain** → enter `rtagames.com`.
+
+Push the repo from the root branch. All frontend files sit beside `index.html` — no subfolders. `404.html` and `.nojekyll` are there for routing and mobile compatibility.
+
+Games and news use the hardcoded fallbacks in `main.js` on the live site. Contact form only works when running Flask locally — Discord link works everywhere.
 
 ## Changing stuff
 

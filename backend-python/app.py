@@ -18,7 +18,7 @@ STATIC_FILES = {
     "logo.svg",
     "war-hero.png",
     "jester.jpg",
-    "team-placeholder.jpg",
+    "mask.jpg",
 }
 
 app = Flask(__name__)

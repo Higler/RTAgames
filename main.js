@@ -1,4 +1,5 @@
-const IS_GITHUB_PAGES = location.hostname.endsWith("github.io");
+const IS_LOCAL =
+  location.hostname === "localhost" || location.hostname === "127.0.0.1";
 const API_BASE = (document.querySelector("base")?.href || location.origin + "/").replace(/\/$/, "");
 
 const FALLBACK_GAMES = [
@@ -144,7 +145,7 @@ async function fetchJson(path, fallback) {
 }
 
 async function loadContent() {
-  if (IS_GITHUB_PAGES) {
+  if (!IS_LOCAL) {
     renderGames(FALLBACK_GAMES);
     renderNews(FALLBACK_NEWS);
     return;
@@ -167,7 +168,7 @@ function initContactForm() {
     status.textContent = "";
     status.className = "form-status";
 
-    if (IS_GITHUB_PAGES) {
+    if (!IS_LOCAL) {
       status.textContent = "Contact form isn't live here — reach us on Discord.";
       status.classList.add("error");
       return;
